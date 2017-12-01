@@ -60,7 +60,8 @@ namespace ImbeddedNavigationIssue.ViewModels
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
-
+            NavigatedToText = "Navigated To NOT Fired";
+            NavigatingToText = "Navigating To NOT Fired";
         }
 
         public void OnNavigatedTo(NavigationParameters parameters)
