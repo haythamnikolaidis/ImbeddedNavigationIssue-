@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:local="clr-namespace:ImbeddedNavigationIssue.Views;assembly=ImbeddedNavigationIssue"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    x:Class="ImbeddedNavigationIssue.Views.MainTabbedPage">
+
+    <local:FirstPage x:Name="First" />
+    <local:SecondPage x:Name="Second" />
+    <local:ThirdPage x:Name="Third" />
+    <local:FourthPage x:Name="Fourth" />
+    <local:FithPage x:Name="Fith" />
+    <local:SixthPage x:Name="Sixth" />
+    <local:SeventhPage x:Name="Seventh" />
+    
+</TabbedPage>

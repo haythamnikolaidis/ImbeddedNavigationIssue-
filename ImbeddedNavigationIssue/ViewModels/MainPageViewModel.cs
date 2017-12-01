@@ -9,6 +9,9 @@ namespace ImbeddedNavigationIssue.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
+
+        private INavigationService navigationService;
+
         private string _title;
         public string Title
         {
@@ -16,8 +19,42 @@ namespace ImbeddedNavigationIssue.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainPageViewModel()
+        private string navigatedToText;
+        public string NavigatedToText
         {
+            get { return navigatedToText; }
+            set { SetProperty(ref navigatedToText, value); }
+        }
+
+        private string navigatingToText;
+        public string NavigatingToText
+        {
+            get { return navigatingToText; }
+            set { SetProperty(ref navigatingToText, value); }
+        }
+
+        private DelegateCommand navigateToDetails;
+        public DelegateCommand NavigateCommand
+        {
+            get { return navigateToDetails; }
+            set { SetProperty(ref navigateToDetails, value); }
+        }
+
+        public MainPageViewModel(INavigationService navigationService)
+        {
+
+            this.navigationService = navigationService;
+            NavigateCommand = new DelegateCommand(NavigateToDetailsPage);
+
+            NavigatedToText = "Navigated To NOT Fired";
+            NavigatingToText = "Navigating To NOT Fired";
+
+
+        }
+
+        private async void NavigateToDetailsPage(){
+
+            await navigationService.NavigateAsync("DetailsPage", null, false);
 
         }
 
@@ -28,13 +65,12 @@ namespace ImbeddedNavigationIssue.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+            NavigatedToText = "Navigated To Fired";
         }
 
         public void OnNavigatingTo(NavigationParameters parameters)
         {
-
+            NavigatingToText = "Navigating To Fired";
         }
     }
 }
